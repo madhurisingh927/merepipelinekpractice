@@ -1,0 +1,21 @@
+trigger:
+- main
+
+pool:
+  vamika
+
+
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
+
+  steps:
+  - task: TerraformTask@5
+    inputs:
+      provider: 'azurerm'
+      command: 'init'
+      backendServiceArm: 'ammupipeline'
+      backendAzureRmResourceGroupName: 'merakaamrghai'
+      backendAzureRmStorageAccountName: 'merakaamstghai'
+      backendAzureRmContainerName: 'meracontainer'
+      backendAzureRmKey: 'maddy.tfstate'
