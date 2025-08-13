@@ -16,3 +16,11 @@ steps:
     backendAzureRmStorageAccountName: 'merakaamstghai'
     backendAzureRmContainerName: 'meracontainer'
     backendAzureRmKey: 'maddy.tfstate'
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'validate'
+
+
+
