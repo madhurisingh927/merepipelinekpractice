@@ -16,11 +16,11 @@ provider "azurerm" {
     name = "merakaamrghai24"
     location = "westus"
   }
-  resource "azurerm_storage_account" "example" {
+  resource "azurerm_storage_account" "stg" {
   name                     = "merakaamstghai"
   resource_group_name      = "merakaamrghai24"
   location                 = "westus"
   account_tier             = "Standard"
   account_replication_type = "GRS"
-  
+  depends_on = [ azurerm_resource_group.myrgg ]
   }
