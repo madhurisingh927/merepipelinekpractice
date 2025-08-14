@@ -18,7 +18,7 @@ provider "azurerm" {
   }
   resource "azurerm_storage_account" "example" {
   name                     = "merakaamstghai"
-  resource_group_name      = "merakaamrghai"
+  resource_group_name      = "merakaamrghai24"
   location                 = "westus"
   account_tier             = "Standard"
   account_replication_type = "GRS"
