@@ -22,5 +22,5 @@ provider "azurerm" {
   location                 = "westus"
   account_tier             = "Standard"
   account_replication_type = "GRS"
-  depends_on = [ azurerm_resource_group.myrg ]
+  
   }
