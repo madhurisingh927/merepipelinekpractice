@@ -12,8 +12,8 @@ provider "azurerm" {
   features {}
     subscription_id = "25a58ceb-2570-42e2-9d35-00b46979c51a"
   }
-  resource "azurerm_resource_group" "myrg" {
-    name = "merakaamrghai"
+  resource "azurerm_resource_group" "myrgg" {
+    name = "merakaamrghai24"
     location = "westus"
   }
   resource "azurerm_storage_account" "example" {
