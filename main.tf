@@ -16,8 +16,8 @@ provider "azurerm" {
     name = "merakaamrghai24"
     location = "westus"
   }
-  resource "azurerm_storage_account" "stg" {
-  name                     = "merakaamstghai"
+  resource "azurerm_storage_account" "stgg" {
+  name                     = "merakaamstghai24"
   resource_group_name      = "merakaamrghai24"
   location                 = "westus"
   account_tier             = "Standard"
