@@ -1,0 +1,66 @@
+trigger:
+- main
+
+pool: vamika
+
+variables: 
+  mybackend: "ammupipeline"
+  myresource: "merepipelinekrg1"
+  mystorage: "merestgkpipeline1"
+  mycontainer: "mycontainer"
+  mykey: "container.tfstate"
+
+stages:
+  - stage: 
+    displayName: terraform planning
+    jobs:
+      - job: terraformInstall
+        displayName: Install Terraform
+        steps:
+          - task: TerraformInstaller@1
+            displayName: terraform installer
+            inputs:
+              terraformVersion: latest
+
+      - job: initTerraform
+        displayName: Terraform Init
+        steps:
+          - task: TerraformTask@5
+            displayName: terraform init
+            inputs:
+              command: init
+              provider: azurerm
+              backendAzureRmResourceGroupName: $(myresource) 
+              backendAzureRmStorageAccountName: $(mystorage)
+              backendAzureRmContainerName: $(mycontainer)
+              backendAzureRmKey: $(mykey)
+              backendservicearm: $(mybackend)
+
+  - stage:
+    displayName: Init and Plan
+    jobs:
+      - job: mango
+        displayName: mango
+        steps:
+          - task: TerraformTask@5
+            displayName: terraform init
+            inputs: 
+              command: init
+              provider: azurerm
+              backendAzureRmResourceGroupName: $(myresource) 
+              backendAzureRmStorageAccountName: $(mystorage)
+              backendAzureRmContainerName: $(mycontainer)
+              backendAzureRmKey: $(mykey)
+              backendservicearm: $(mybackend)
+
+      - job: plan
+        displayName: plan
+        dependsOn: mango
+        steps:
+          - task: TerraformTask@5
+            displayName: plan
+            inputs:
+              provider: 'azurerm'
+              command: 'plan'
+              
+              environmentServiceNameAzureRM: $(mybackend)
